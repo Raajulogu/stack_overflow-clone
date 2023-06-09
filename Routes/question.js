@@ -41,8 +41,7 @@ router.post("/ask", async (req, res) => {
         const questions = await new Questions(
             {
                 ...req.body,
-                date: postedDate,
-                user: req.user._id
+                date: postedDate
             }
         ).save()
         if (!questions) {
