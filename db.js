@@ -7,7 +7,7 @@ export function dbConnection(){
     }
 
     try {
-        mongoose.connect("mongodb+srv://rajesh:rajesh145@cluster0.563jw0h.mongodb.net/?retryWrites=true&w=majority/Stack_Overflow", params)
+        mongoose.connect("mongodb+srv://rajesh:rajesh145@cluster0.563jw0h.mongodb.net/Stack_Overflow?retryWrites=true&w=majority", params)
         console.log("Database connected Sucessfully")
     } catch (error) {
        console.log("Error connecting DB----", error) 
