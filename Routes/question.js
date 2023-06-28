@@ -35,7 +35,7 @@ router.get("/user", async (req, res) => {
 })
 
 router.post("/ask", async (req, res) => {
-    // new date logic
+    // new date logic 
     try {
         const postedDate = new Date().toJSON().slice(0, 10);
         const questions = await new Questions(
