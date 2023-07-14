@@ -5,6 +5,7 @@ import { dbConnection } from "./db.js";
 import { userRouter } from "./Routes/user.js";
 import { notesRouter } from "./Routes/question.js";
 import { isAuthenticated } from "./controllers/auth.js";
+import { companyRouter } from "./Routes/company.js";
 
 // configuring env
 dotenv.config();
@@ -21,6 +22,7 @@ dbConnection()
 
 app.use("/api/user", userRouter);
 app.use("/api/question",isAuthenticated, notesRouter)
+app.use("/api/company",isAuthenticated, companyRouter)
 
 //server connection
 app.listen(PORT, ()=>console.log(`Server running in localhost:${PORT}`))

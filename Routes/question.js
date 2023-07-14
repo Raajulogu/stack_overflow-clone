@@ -70,7 +70,6 @@ router.put("/answer/:id", async (req, res) => {
             { _id: id },
             { $set:{answers: answer} }
         );
-        console.log(addAnswers)
         if (!addAnswers) {
             return res
                 .status(400)
