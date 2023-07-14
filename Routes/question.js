@@ -22,7 +22,7 @@ router.get("/all", async (req, res) => {
 router.get("/user", async (req, res) => {
     try {
         const questions = await Questions
-            .find({ user: req.user._id })
+            .find({ user: req.id })
             .populate("name email")
         if (!questions) {
             return res.status(400).json({ message: "Couldn't any Document" })
@@ -76,6 +76,52 @@ router.put("/answer/:id", async (req, res) => {
                 .json({ message: "Error Occured" })
         }
         res.status(200).json({ message: "Answered Sucessfully", data: addAnswers })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Internal server error" })
+    }
+})
+
+router.put("/upvote", async (req, res) => {
+    // new date logic 
+    try {
+        let id=req.body.id
+        console.log(id)
+        let user = await Questions
+            .find({ _id:id })
+        let vote=user[0].votes;
+        vote++;
+        const addVote = await Questions.findOneAndUpdate(
+            { _id: id },
+            { $set:{votes: vote} }
+        );
+        if (!addVote) {
+            return res.status(400).json({ message: "Error in Voting" })
+        }
+        res.status(200).json({ message: "Voted Successfully", data: addVote })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Internal server error" })
+    }
+})
+
+router.put("/downvote", async (req, res) => {
+    // new date logic 
+    try {
+        let id=req.body.id
+        console.log(id)
+        let user = await Questions
+            .find({ _id:id })
+        let vote=user[0].votes;
+        vote--;
+        const addVote = await Questions.findOneAndUpdate(
+            { _id: id },
+            { $set:{votes: vote} }
+        );
+        if (!addVote) {
+            return res.status(400).json({ message: "Error in Voting" })
+        }
+        res.status(200).json({ message: "Voted Successfully", data: addVote })
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: "Internal server error" })

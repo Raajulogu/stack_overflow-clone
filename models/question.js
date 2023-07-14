@@ -24,7 +24,7 @@ const questionSchema = new mongoose.Schema(
         },
         votes : {
             type:Number,
-            default: "0"
+            default: 0
         },
         date : {
             type :String,
