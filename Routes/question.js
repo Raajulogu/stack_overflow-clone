@@ -85,8 +85,7 @@ router.put("/answer/:id", async (req, res) => {
 router.put("/upvote", async (req, res) => {
     // new date logic 
     try {
-        let id=req.body.id
-        console.log(id)
+        let id=req.body.id;
         let user = await Questions
             .find({ _id:id })
         let vote=user[0].votes;
@@ -109,7 +108,6 @@ router.put("/downvote", async (req, res) => {
     // new date logic 
     try {
         let id=req.body.id
-        console.log(id)
         let user = await Questions
             .find({ _id:id })
         let vote=user[0].votes;
